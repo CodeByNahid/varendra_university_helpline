@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VU Admissions HelpLine</title>
+  <link rel="shortcut icon" type="icon" href="vu logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #21262d;
+      --border: #30363d;
+      --gold: #eb5600;
+      --gold-dim: #a07810;
+      --red: #af0a0a;
+      --red-hover: #d01010;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --radius: 10px;
+      --transition: 0.2s ease;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .header-brand .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .header-badge {
+      font-size: 11px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    .header-social {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .header-social a {
+      color: var(--text-muted);
+      font-size: 18px;
+      text-decoration: none;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+
+    .header-social a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    .header-social a.fb:hover {
+      color: #1877f2;
+    }
+
+    .header-social a.yt:hover {
+      color: #ff0000;
+    }
+
+    /* ── MAIN WRAPPER ── */
+    .wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title i {
+      color: var(--gold);
+      font-size: 18px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .section-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .section-link:hover {
+      opacity: 0.8;
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+      padding: 10px 0 20px;
+      flex-wrap: wrap;
+    }
+
+    .breadcrumb span {
+      color: var(--text-muted);
+    }
+
+    .breadcrumb button {
+      background: none;
+      border: none;
+      color: var(--gold);
+      cursor: pointer;
+      font-size: 13px;
+      padding: 2px 4px;
+      border-radius: 4px;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .breadcrumb button:hover {
+      background: rgba(235, 86, 0, 0.12);
+    }
+
+    .breadcrumb .current {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ── VIEW TITLE ── */
+    .view-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .view-title i {
+      color: var(--gold);
+      font-size: 18px;
+    }
+
+    .view-subtitle {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    /* ── HOME GRID ── */
+    .home-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    @media (min-width: 560px) {
+      .home-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .home-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+      }
+    }
+
+    .dept-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      color: var(--text);
+      padding: 14px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dept-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(235, 86, 0, 0.07) 0%, transparent 60%);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .dept-card:hover::before {
+      opacity: 1;
+    }
+
+    .dept-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .dept-card.tuition {
+      background: var(--red);
+      border-color: #7a0000;
+    }
+
+    .dept-card.tuition:hover {
+      background: var(--red-hover);
+      border-color: #aa0000;
+    }
+
+    .dept-card .card-icon {
+      font-size: 28px;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .dept-card.tuition .card-icon {
+      color: #fff;
+    }
+
+    .dept-card .card-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    .dept-card .card-count {
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--surface2);
+      padding: 2px 8px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .dept-card.tuition .card-count {
+      background: rgba(0, 0, 0, 0.25);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* ── FILE EXPLORER ── */
+    .explorer-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-back {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 7px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .toolbar-back:hover {
+      border-color: var(--gold-dim);
+      color: var(--gold);
+    }
+
+    .file-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    @media (min-width: 480px) {
+      .file-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 640px) {
+      .file-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .file-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 10px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      color: var(--text);
+      text-align: center;
+    }
+
+    .file-item:hover {
+      border-color: var(--gold-dim);
+      background: var(--surface2);
+      transform: translateY(-2px);
+    }
+
+    .file-item .file-icon {
+      font-size: 38px;
+      line-height: 1;
+    }
+
+    .file-item .file-name {
+      font-size: 12px;
+      line-height: 1.3;
+      color: var(--text);
+      word-break: break-word;
+      width: 100%;
+    }
+
+    .file-item .file-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .icon-pdf {
+      color: #e74c3c;
+    }
+
+    .icon-img {
+      color: #3498db;
+    }
+
+    .icon-folder {
+      color: var(--gold);
+    }
+
+    .icon-link {
+      color: #a29bfe;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty-state i {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.4;
+      display: block;
+    }
+
+    .empty-state p {
+      font-size: 15px;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      max-width: 960px;
+      margin: 48px auto 0;
+      padding: 0 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-block {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 16px 0;
+    }
+
+    /* ── VIDEO SECTION ── */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    @media (min-width: 600px) {
+      .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 900px) {
+      .video-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .video-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-card:hover {
+      border-color: #c00;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .video-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover .video-thumb img {
+      transform: scale(1.04);
+    }
+
+    .video-thumb .play-btn {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.35);
+      transition: var(--transition);
+    }
+
+    .video-card:hover .play-btn {
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    .play-btn i {
+      font-size: 42px;
+      color: #fff;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
+    }
+
+    .video-info {
+      padding: 10px 12px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+
+    .video-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .video-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Full playlist card — spans full width */
+    .playlist-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .playlist-card:hover {
+      border-color: #c00;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .playlist-thumb {
+      position: relative;
+      width: 160px;
+      min-width: 160px;
+      aspect-ratio: 16/9;
+      background: #111;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 480px) {
+      .playlist-thumb {
+        width: 110px;
+        min-width: 110px;
+      }
+    }
+
+    .playlist-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .playlist-thumb .play-btn {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .playlist-thumb .play-btn i {
+      font-size: 28px;
+      color: #fff;
+    }
+
+    .playlist-info {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .playlist-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: #c00;
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .playlist-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .playlist-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ── DONATION SECTION ── */
+    .donate-section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 16px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+    }
+
+    .donate-title {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .donate-title i {
+      color: var(--gold);
+    }
+
+    .donate-subtitle {
+      color: var(--text-muted);
+      font-size: 13px;
+      max-width: 420px;
+    }
+
+    .donate-qr {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      background: #fff;
+      padding: 6px;
+      display: block;
+    }
+
+    /* ── CONTACT BUTTON ── */
+    .contact-section {
+      text-align: center;
+      padding: 32px 16px 20px;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #1877f2;
+      color: #fff;
+      text-decoration: none;
+      padding: 13px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      transition: var(--transition);
+      box-shadow: 0 4px 16px rgba(24, 119, 242, 0.3);
+    }
+
+    .contact-btn:hover {
+      background: #1565d8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(24, 119, 242, 0.45);
+    }
+
+    .contact-btn i {
+      font-size: 18px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 20px 16px 32px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 20px;
+    }
+
+    .footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* View transitions */
+    .view {
+      animation: fadeIn 0.18s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="header-brand">
+      <span class="dot"></span>
+      VU Admissions HelpLine
+      <span class="header-badge">Unofficial</span>
+    </div>
+    <div class="header-social">
+      <a href="https://facebook.com/RajshahirNahid" target="_blank" class="fb" title="Facebook">
+        <i class="fab fa-facebook"></i>
+      </a>
+      <a href="https://www.youtube.com/@RajshahirNahid/" target="_blank" class="yt" title="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- ── DEPARTMENTS ─────────────────────────────────── -->
+  <div class="wrapper">
+    <nav class="breadcrumb" id="breadcrumb"></nav>
+    <div id="app"></div>
+  </div>
+
+  <!-- ── GUIDELINE VIDEOS ────────────────────────────── -->
+  <div class="section-divider"></div>
+  <div class="section-block">
+    <div class="section-header">
+      <div class="section-title">
+        <i class="fab fa-youtube"></i> Guideline Videos
+      </div>
+      <a class="section-link" href="https://www.youtube.com/playlist?list=PLRPJSxLU9wkWYL1DXalGar65JxruxbkEh"
+        target="_blank">
+        View full playlist <i class="fas fa-arrow-right" style="font-size:11px"></i>
+      </a>
+    </div>
+    <p class="section-subtitle">Step-by-step admission guides — watch before you apply</p>
+
+    <!-- Top 3 individual video cards -->
+    <!-- Replace VIDEO_ID_1/2/3 and titles with your actual video IDs from the playlist -->
+    <div class="video-grid">
+
+      <a class="video-card" href="https://www.youtube.com/watch?v=QPLVKlZ7miI&list=PLRPJSxLU9wkWYL1DXalGar65JxruxbkEh"
+        target="_blank">
+        <div class="video-thumb">
+          <img src="https://i.ytimg.com/vi/QPLVKlZ7miI/mqdefault.jpg"
+            onerror="this.src='https://i.ytimg.com/vi/default/mqdefault.jpg'" alt="Video 1">
+          <div class="play-btn"><i class="fas fa-play-circle"></i></div>
+        </div>
+        <div class="video-info">
+          <div class="video-title">ভর্তি পরীক্ষার আবেদন কিভাবে করবেন</div>
+          <div class="video-meta"><i class="fab fa-youtube" style="color:#ff0000"></i> Watch on YouTube</div>
+        </div>
+      </a>
+
+      <a class="video-card" href="https://www.youtube.com/watch?v=ZCft6elWUew&list=PLRPJSxLU9wkWYL1DXalGar65JxruxbkEh"
+        target="_blank">
+        <div class="video-thumb">
+          <img src="https://i.ytimg.com/vi/ZCft6elWUew/mqdefault.jpg"
+            onerror="this.src='https://i.ytimg.com/vi/default/mqdefault.jpg'" alt="Video 2">
+          <div class="play-btn"><i class="fas fa-play-circle"></i></div>
+        </div>
+        <div class="video-info">
+          <div class="video-title">ভর্তি পরীক্ষার প্রস্তুতি ও টিপস</div>
+          <div class="video-meta"><i class="fab fa-youtube" style="color:#ff0000"></i> Watch on YouTube</div>
+        </div>
+      </a>
+
+      <a class="video-card" href="https://www.youtube.com/watch?v=tgN2Xg3A73M&list=PLRPJSxLU9wkWYL1DXalGar65JxruxbkEh"
+        target="_blank">
+        <div class="video-thumb">
+          <img src="https://i.ytimg.com/vi/tgN2Xg3A73M/mqdefault.jpg"
+            onerror="this.src='https://i.ytimg.com/vi/default/mqdefault.jpg'" alt="Video 3">
+          <div class="play-btn"><i class="fas fa-play-circle"></i></div>
+        </div>
+        <div class="video-info">
+          <div class="video-title">ভর্তি পরীক্ষা কেমন হয় ?</div>
+          <div class="video-meta"><i class="fab fa-youtube" style="color:#ff0000"></i> Watch on YouTube</div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Full playlist card -->
+    <a class="playlist-card" href="https://www.youtube.com/playlist?list=PLRPJSxLU9wkWYL1DXalGar65JxruxbkEh"
+      target="_blank">
+      <div class="playlist-thumb">
+        <img src="https://i.ytimg.com/vi/QPLVKlZ7miI/mqdefault.jpg"
+          onerror="this.src='https://i.ytimg.com/vi/default/mqdefault.jpg'" alt="Full Playlist">
+        <div class="play-btn"><i class="fas fa-list"></i></div>
+      </div>
+      <div class="playlist-info">
+        <span class="playlist-badge">PLAYLIST</span>
+        <div class="playlist-title">VU Admissions — সম্পূর্ণ গাইডলাইন ভিডিও সিরিজ</div>
+        <div class="playlist-meta"><i class="fab fa-youtube" style="color:#ff0000; margin-right:4px"></i>সব ভিডিও একসাথে
+          দেখুন</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- ── DONATION QR ─────────────────────────────────── -->
+  <div class="section-divider"></div>
+  <div class="donate-section">
+    <div class="donate-title"><i class="fas fa-heart"></i> Support This Project</div>
+    <p class="donate-subtitle">এই ওয়েবসাইট ফ্রি রাখতে সাহায্য করুন। যেকোনো পরিমাণ ডোনেট করা যাবে।</p>
+    <img src="donate_qr.jpg" alt="Donation QR Code" class="donate-qr">
+    <p style="color:var(--text-muted); font-size:12px;">স্ক্যান করে ডোনেট করুন</p>
+  </div>
+
+  <!-- ── CONTACT ─────────────────────────────────────── -->
+  <div class="contact-section">
+    <a href="https://facebook.com/RajshahirNahid" target="_blank" class="contact-btn">
+      <i class="fab fa-facebook"></i> Contact Me on Facebook
+    </a>
+  </div>
+
+  <footer class="footer">
+    Made with ❤️ by <a href="https://facebook.com/RajshahirNahid" target="_blank">Nahid</a> &nbsp;·&nbsp; Not affiliated
+    with Varendra University
+  </footer>
+
+  <script>
+    const DEPARTMENTS = [
+      {
+        id: 'tuition',
+        label: 'TUITION FEE',
+        icon: 'fa-money-bill-wave',
+        style: 'tuition',
+        externalUrl: 'https://vu.edu.bd/international/tuition-fees'
+      },
+      {
+        id: 'bba',
+        label: 'BBA',
+        icon: 'fa-briefcase',
+        items: [
+          { name: 'BBA Fall 16&18.pdf', type: 'pdf', url: 'questions/BBA/BBA Fall 16&18.pdf' },
+          { name: 'BBA Summer 22 (1).jpg', type: 'image', url: 'questions/BBA/BBA summer 22(1).jpg' },
+          { name: 'BBA Summer 22.jpg', type: 'image', url: 'questions/BBA/BBA summer 22.jpg' },
+          { name: 'BBA Summer 22.pdf', type: 'pdf', url: 'questions/BBA/BBA summer 22.pdf' },
+          { name: 'BBA Summer 23.pdf', type: 'pdf', url: 'questions/BBA/BBA summer 23.pdf' },
+          { name: 'BBA Summer 24.pdf', type: 'pdf', url: 'questions/BBA/BBA summer 24.pdf' },
+        ]
+      },
+      {
+        id: 'cse',
+        label: 'CSE',
+        icon: 'fa-code',
+        items: [
+          { name: 'CSE Fall 23.pdf', type: 'pdf', url: 'questions/CSE/CSE-Fall-23.pdf' },
+          { name: 'CSE.pdf', type: 'pdf', url: 'questions/CSE/CSE.pdf' },
+          { name: 'Fall 23 (1).jpg', type: 'image', url: 'questions/CSE/Fall -23 (1).jpg' },
+          { name: 'Fall 23 (2).jpg', type: 'image', url: 'questions/CSE/Fall -23 (2).jpg' },
+          { name: 'Fall 23 (3).jpg', type: 'image', url: 'questions/CSE/Fall -23 (3).jpg' },
+        ]
+      },
+      {
+        id: 'economics',
+        label: 'ECONOMICS',
+        icon: 'fa-chart-line',
+        items: [
+          { name: 'Economic Summer 23.pdf', type: 'pdf', url: 'questions/Economics/Economic summer 23.pdf' },
+          { name: 'Economics Spring 16.pdf', type: 'pdf', url: 'questions/Economics/Economics spring 16.pdf' },
+          { name: 'Economics.pdf', type: 'pdf', url: 'questions/Economics/Economics.pdf' },
+        ]
+      },
+      {
+        id: 'eee',
+        label: 'EEE',
+        icon: 'fa-bolt',
+        items: [
+          { name: 'EEE 2.pdf', type: 'pdf', url: 'questions/EEE/EEE 2.pdf' },
+          { name: 'EEE.pdf', type: 'pdf', url: 'questions/EEE/EEE.pdf' },
+        ]
+      },
+      {
+        id: 'english',
+        label: 'ENGLISH',
+        icon: 'fa-book-open',
+        items: [
+          { name: 'English Summer 19 Spring 20.pdf', type: 'pdf', url: 'questions/English/English summer 19 spring 20.pdf' },
+          { name: 'English Question.jpg', type: 'image', url: 'questions/English/FB_IMG_1714929009571.jpg' },
+        ]
+      },
+      {
+        id: 'journalism',
+        label: 'JOURNALISM',
+        icon: 'fa-newspaper',
+        items: [
+          { name: 'Journalism Fall 22.pdf', type: 'pdf', url: 'questions/Journalism/Journalism fall 22.pdf' },
+          { name: 'Journalism Spring 25.pdf', type: 'pdf', url: 'questions/Journalism/Journalism spring 25 .pdf' },
+          { name: 'Journalism Summer 23.pdf', type: 'pdf', url: 'questions/Journalism/Journalism summer 23.pdf' },
+          { name: 'Journalism Summer 24.pdf', type: 'pdf', url: 'questions/Journalism/Journalism summer 24.pdf' },
+          { name: 'Journalism Fall 2015.pdf', type: 'pdf', url: 'questions/Journalism/Jurnalism fall 2015.pdf' },
+        ]
+      },
+      {
+        id: 'law',
+        label: 'LAW',
+        icon: 'fa-scale-balanced',
+        items: [
+          { name: 'Law and Human Rights.pdf', type: 'pdf', url: 'questions/LAW/Law and Human Rights.pdf' },
+          { name: 'Question Page 1.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1714928967948.jpg' },
+          { name: 'Question Page 2.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1714928969763.jpg' },
+          { name: 'Question Page 3.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1714928971682.jpg' },
+          { name: 'Question Page 4.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1714928973398.jpg' },
+          { name: 'Question Page 5.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1714928975916.jpg' },
+          { name: 'Question Page 6.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1714928977848.jpg' },
+          { name: 'Question Page 7.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1714928982434.jpg' },
+          { name: 'Question Page 8.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1714928984253.jpg' },
+          { name: 'Question Page 9.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1714928986466.jpg' },
+          { name: 'Question Page 10.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1714928988650.jpg' },
+          { name: 'Question Page 11.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1715098442096.jpg' },
+          { name: 'Question Page 12.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1715098443862.jpg' },
+          { name: 'Question Page 13.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1715098445830.jpg' },
+          { name: 'Question Page 14.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1715098447763.jpg' },
+          { name: 'Question Page 15.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1715098449397.jpg' },
+        ]
+      },
+      {
+        id: 'nfe',
+        label: 'NFE',
+        icon: 'fa-graduation-cap',
+        items: [
+          { name: 'NFE (1).pdf', type: 'pdf', url: 'questions/NFE/NFE(1).pdf' },
+          { name: 'NFE.pdf', type: 'pdf', url: 'questions/NFE/NFE.pdf' },
+        ]
+      },
+      {
+        id: 'pharmacy',
+        label: 'PHARMACY',
+        icon: 'fa-pills',
+        items: [
+          { name: 'Pharmacy 18.pdf', type: 'pdf', url: 'questions/Pharmacy/Pharmacy 18.pdf' },
+          { name: 'Pharmacy Spr 24.pdf', type: 'pdf', url: 'questions/Pharmacy/Pharmacy-Spr-24.pdf' },
+          { name: 'Pharmacy.pdf', type: 'pdf', url: 'questions/Pharmacy/Pharmacy.pdf' },
+        ]
+      },
+      {
+        id: 'polsci',
+        label: 'POLITICAL SCIENCE',
+        icon: 'fa-landmark',
+        items: [
+          { name: 'Political Science Spring 20.pdf', type: 'pdf', url: 'questions/Political Science/Political Science spring 20.pdf' },
+          { name: 'Political Science Summer 24.pdf', type: 'pdf', url: 'questions/Political Science/political science summer 24.pdf' },
+          { name: 'Political Sciences Fall 22.pdf', type: 'pdf', url: 'questions/Political Science/political sciences fall 22.pdf' },
+        ]
+      },
+      {
+        id: 'sociology',
+        label: 'SOCIOLOGY',
+        icon: 'fa-people-group',
+        items: [
+          { name: 'Sociology 2019.pdf', type: 'pdf', url: 'questions/Sociology/Sociology 2019.pdf' },
+          { name: 'Sociology Fall 2022.pdf', type: 'pdf', url: 'questions/Sociology/Sociology Admission Test Question Fall 2022_final (1).pdf' },
+          { name: 'Sociology Spring 2025.pdf', type: 'pdf', url: 'questions/Sociology/Sociology Admission Test Question Spring 2025.pdf' },
+          { name: 'Sociology Spring 2024.pdf', type: 'pdf', url: 'questions/Sociology/Sociology Admission Test Question Spring_2024.pdf' },
+          { name: 'Sociology Summer 2023.pdf', type: 'pdf', url: 'questions/Sociology/Sociology admission test summer 2023.pdf' },
+          { name: 'Sociology Spring 2022.pdf', type: 'pdf', url: 'questions/Sociology/Sociology_Admission_Test_Question_Spring-  2022.pdf' },
+        ]
+      }
+    ];
+
+    let state = { view: 'home', dept: null, folderStack: [] };
+
+    function render() {
+      renderBreadcrumb();
+      if (state.view === 'home') renderHome();
+      else renderExplorer();
+    }
+
+    function renderBreadcrumb() {
+      const bc = document.getElementById('breadcrumb');
+      let html = `<button onclick="goHome()"><i class="fa fa-house" style="font-size:12px"></i> Home</button>`;
+      if (state.view === 'explorer' && state.dept) {
+        html += `<span>/</span>`;
+        if (state.folderStack.length === 0) {
+          html += `<span class="current">${state.dept.label}</span>`;
+        } else {
+          html += `<button onclick="goDept()">${state.dept.label}</button>`;
+          state.folderStack.forEach((folder, i) => {
+            html += `<span>/</span>`;
+            if (i === state.folderStack.length - 1) {
+              html += `<span class="current">${folder.name}</span>`;
+            } else {
+              html += `<button onclick="goFolderLevel(${i})">${folder.name}</button>`;
+            }
+          });
+        }
+      }
+      bc.innerHTML = html;
+    }
+
+    function renderHome() {
+      const app = document.getElementById('app');
+      let cards = '';
+      DEPARTMENTS.forEach(dept => {
+        const count = dept.externalUrl ? null : (dept.items ? dept.items.length : 0);
+        const countBadge = count !== null
+          ? `<span class="card-count">${count} file${count !== 1 ? 's' : ''}</span>`
+          : '';
+        if (dept.externalUrl) {
+          cards += `
+        <a class="dept-card ${dept.style || ''}" href="${dept.externalUrl}" target="_blank" title="${dept.label}">
+          <span class="card-icon"><i class="fas ${dept.icon}"></i></span>
+          <span class="card-label">${dept.label}</span>
+        </a>`;
+        } else {
+          cards += `
+        <div class="dept-card ${dept.style || ''}" onclick="openDept('${dept.id}')" title="Open ${dept.label}">
+          <span class="card-icon"><i class="fas ${dept.icon}"></i></span>
+          <span class="card-label">${dept.label}</span>
+          ${countBadge}
+        </div>`;
+        }
+      });
+      app.innerHTML = `
+    <div class="view">
+      <div class="section-header">
+        <div class="section-title"><i class="fas fa-folder-open"></i> Departments</div>
+      </div>
+      <p class="section-subtitle">Select a department to browse past question papers</p>
+      <div class="home-grid">${cards}</div>
+    </div>`;
+    }
+
+    function renderExplorer() {
+      const app = document.getElementById('app');
+      const dept = state.dept;
+      let items = dept.items || [];
+      for (const folder of state.folderStack) { items = folder.children || []; }
+      const currentFolder = state.folderStack.length > 0 ? state.folderStack[state.folderStack.length - 1] : null;
+      const title = currentFolder ? currentFolder.name : dept.label;
+      let filesHtml = '';
+      if (items.length === 0) {
+        filesHtml = `<div class="empty-state"><i class="fas fa-folder-open"></i><p>No files here yet.</p></div>`;
+      } else {
+        items.forEach((item, idx) => {
+          const { iconClass, iconColor } = getFileIcon(item.type);
+          if (item.type === 'folder') {
+            filesHtml += `
+          <div class="file-item" onclick="openFolder(${idx})" title="${item.name}">
+            <span class="file-icon ${iconColor}"><i class="fas ${iconClass}"></i></span>
+            <span class="file-name">${item.name}</span>
+            <span class="file-meta">${item.children ? item.children.length + ' items' : 'Folder'}</span>
+          </div>`;
+          } else {
+            filesHtml += `
+          <a class="file-item" href="${item.url}" target="_blank" title="${item.name}">
+            <span class="file-icon ${iconColor}"><i class="fas ${iconClass}"></i></span>
+            <span class="file-name">${item.name}</span>
+            <span class="file-meta">${item.type.toUpperCase()}</span>
+          </a>`;
+          }
+        });
+      }
+      app.innerHTML = `
+    <div class="view">
+      <div class="explorer-toolbar">
+        <button class="toolbar-back" onclick="${state.folderStack.length > 0 ? 'goUp()' : 'goHome()'}">
+          <i class="fas fa-arrow-left"></i>
+          ${state.folderStack.length > 0 ? 'Back' : 'All Departments'}
+        </button>
+      </div>
+      <div class="view-title"><i class="fas ${dept.icon}"></i> ${title}</div>
+      <div class="view-subtitle">${items.length} file${items.length !== 1 ? 's' : ''} in this folder</div>
+      <div class="file-grid">${filesHtml}</div>
+    </div>`;
+    }
+
+    function getFileIcon(type) {
+      switch (type) {
+        case 'pdf': return { iconClass: 'fa-file-pdf', iconColor: 'icon-pdf' };
+        case 'image': return { iconClass: 'fa-file-image', iconColor: 'icon-img' };
+        case 'folder': return { iconClass: 'fa-folder', iconColor: 'icon-folder' };
+        case 'link': return { iconClass: 'fa-link', iconColor: 'icon-link' };
+        default: return { iconClass: 'fa-file', iconColor: '' };
+      }
+    }
+
+    function goHome() { state = { view: 'home', dept: null, folderStack: [] }; render(); }
+    function openDept(id) { state.dept = DEPARTMENTS.find(d => d.id === id); state.view = 'explorer'; state.folderStack = []; render(); }
+    function goDept() { state.folderStack = []; render(); }
+    function openFolder(idx) { const items = getCurrentItems(); const folder = items[idx]; if (folder && folder.type === 'folder') { state.folderStack.push(folder); render(); } }
+    function goUp() { state.folderStack.pop(); render(); }
+    function goFolderLevel(i) { state.folderStack = state.folderStack.slice(0, i + 1); render(); }
+    function getCurrentItems() { let items = state.dept.items || []; for (const folder of state.folderStack) items = folder.children || []; return items; }
+
+    render();
+  </script>
+</body>
+
+</html>
