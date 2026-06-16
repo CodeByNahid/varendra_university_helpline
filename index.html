@@ -36,18 +36,20 @@
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
+      /* Prevent horizontal scroll on mobile */
+      overflow-x: hidden;
     }
 
     /* ── HEADER ── */
     .header {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
-      padding: 0 20px;
+      padding: 0 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      height: 60px;
+      gap: 8px;
+      height: 56px;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -56,54 +58,70 @@
     .header-brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 17px;
+      gap: 8px;
+      font-size: 15px;
       font-weight: 700;
-      letter-spacing: 0.3px;
-      white-space: nowrap;
-      flex-shrink: 0;
+      letter-spacing: 0.2px;
+      min-width: 0;
     }
 
     .header-brand .dot {
-      width: 10px;
-      height: 10px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: var(--gold);
       display: inline-block;
       flex-shrink: 0;
     }
 
+    .header-brand span.name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     .header-badge {
-      font-size: 11px;
+      font-size: 10px;
       background: var(--surface2);
       border: 1px solid var(--border);
       color: var(--text-muted);
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 20px;
       font-weight: 400;
       white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Hide badge on very small screens */
+    @media (max-width: 360px) {
+      .header-badge {
+        display: none;
+      }
     }
 
     .header-social {
       display: flex;
-      gap: 6px;
+      gap: 4px;
       align-items: center;
+      flex-shrink: 0;
     }
 
     .header-social a {
       color: var(--text-muted);
-      font-size: 18px;
+      font-size: 17px;
       text-decoration: none;
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 8px;
       transition: var(--transition);
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .header-social a:hover {
+    .header-social a:hover,
+    .header-social a:active {
       background: var(--surface2);
       color: var(--text);
     }
@@ -120,7 +138,7 @@
     .wrapper {
       max-width: 960px;
       margin: 0 auto;
-      padding: 24px 16px 40px;
+      padding: 20px 14px 40px;
     }
 
     /* ── SECTION HEADER ── */
@@ -134,7 +152,7 @@
     }
 
     .section-title {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       display: flex;
       align-items: center;
@@ -143,13 +161,13 @@
 
     .section-title i {
       color: var(--gold);
-      font-size: 18px;
+      font-size: 17px;
     }
 
     .section-subtitle {
       color: var(--text-muted);
       font-size: 13px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .section-link {
@@ -161,6 +179,7 @@
       gap: 5px;
       transition: var(--transition);
       white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .section-link:hover {
@@ -171,10 +190,10 @@
     .breadcrumb {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       font-size: 13px;
       color: var(--text-muted);
-      padding: 10px 0 20px;
+      padding: 8px 0 18px;
       flex-wrap: wrap;
     }
 
@@ -188,10 +207,12 @@
       color: var(--gold);
       cursor: pointer;
       font-size: 13px;
-      padding: 2px 4px;
+      padding: 4px 6px;
       border-radius: 4px;
       transition: var(--transition);
       font-family: inherit;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .breadcrumb button:hover {
@@ -205,7 +226,7 @@
 
     /* ── VIEW TITLE ── */
     .view-title {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       margin-bottom: 6px;
       display: flex;
@@ -215,23 +236,23 @@
 
     .view-title i {
       color: var(--gold);
-      font-size: 18px;
+      font-size: 17px;
     }
 
     .view-subtitle {
       color: var(--text-muted);
       font-size: 13px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     /* ── HOME GRID ── */
     .home-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+      gap: 12px;
     }
 
-    @media (min-width: 560px) {
+    @media (min-width: 480px) {
       .home-grid {
         grid-template-columns: repeat(3, 1fr);
       }
@@ -240,7 +261,7 @@
     @media (min-width: 768px) {
       .home-grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 18px;
+        gap: 16px;
       }
     }
 
@@ -253,15 +274,17 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       cursor: pointer;
       transition: var(--transition);
       text-decoration: none;
       color: var(--text);
-      padding: 14px;
+      padding: 12px 8px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .dept-card::before {
@@ -273,14 +296,16 @@
       transition: var(--transition);
     }
 
-    .dept-card:hover::before {
+    .dept-card:hover::before,
+    .dept-card:active::before {
       opacity: 1;
     }
 
-    .dept-card:hover {
+    .dept-card:hover,
+    .dept-card:active {
       border-color: var(--gold-dim);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
     }
 
     .dept-card.tuition {
@@ -288,13 +313,14 @@
       border-color: #7a0000;
     }
 
-    .dept-card.tuition:hover {
+    .dept-card.tuition:hover,
+    .dept-card.tuition:active {
       background: var(--red-hover);
       border-color: #aa0000;
     }
 
     .dept-card .card-icon {
-      font-size: 28px;
+      font-size: 26px;
       color: var(--gold);
       line-height: 1;
     }
@@ -304,18 +330,30 @@
     }
 
     .dept-card .card-label {
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
       line-height: 1.2;
       word-break: break-word;
     }
 
+    @media (min-width: 400px) {
+      .dept-card .card-label {
+        font-size: 12px;
+      }
+    }
+
+    @media (min-width: 560px) {
+      .dept-card .card-label {
+        font-size: 13px;
+      }
+    }
+
     .dept-card .card-count {
-      font-size: 11px;
+      font-size: 10px;
       color: var(--text-muted);
       background: var(--surface2);
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 10px;
       border: 1px solid var(--border);
     }
@@ -331,15 +369,14 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
+      margin-bottom: 14px;
     }
 
     .toolbar-back {
       background: var(--surface2);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 7px 14px;
+      padding: 8px 14px;
       border-radius: 8px;
       cursor: pointer;
       font-size: 13px;
@@ -348,9 +385,14 @@
       gap: 6px;
       transition: var(--transition);
       font-family: inherit;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      /* Minimum tap target 44px */
+      min-height: 44px;
     }
 
-    .toolbar-back:hover {
+    .toolbar-back:hover,
+    .toolbar-back:active {
       border-color: var(--gold-dim);
       color: var(--gold);
     }
@@ -358,7 +400,7 @@
     .file-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 10px;
     }
 
     @media (min-width: 480px) {
@@ -377,39 +419,50 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 14px 10px 12px;
+      padding: 14px 8px 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       cursor: pointer;
       transition: var(--transition);
       text-decoration: none;
       color: var(--text);
       text-align: center;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      /* Ensure enough height for tap */
+      min-height: 90px;
     }
 
-    .file-item:hover {
+    .file-item:hover,
+    .file-item:active {
       border-color: var(--gold-dim);
       background: var(--surface2);
       transform: translateY(-2px);
     }
 
     .file-item .file-icon {
-      font-size: 38px;
+      font-size: 34px;
       line-height: 1;
     }
 
     .file-item .file-name {
-      font-size: 12px;
+      font-size: 11px;
       line-height: 1.3;
       color: var(--text);
       word-break: break-word;
       width: 100%;
     }
 
+    @media (min-width: 400px) {
+      .file-item .file-name {
+        font-size: 12px;
+      }
+    }
+
     .file-item .file-meta {
-      font-size: 11px;
+      font-size: 10px;
       color: var(--text-muted);
     }
 
@@ -432,47 +485,41 @@
     /* ── EMPTY STATE ── */
     .empty-state {
       text-align: center;
-      padding: 60px 20px;
+      padding: 50px 20px;
       color: var(--text-muted);
     }
 
     .empty-state i {
-      font-size: 48px;
-      margin-bottom: 16px;
+      font-size: 44px;
+      margin-bottom: 14px;
       opacity: 0.4;
       display: block;
     }
 
     .empty-state p {
-      font-size: 15px;
+      font-size: 14px;
     }
 
     /* ── SECTION DIVIDER ── */
     .section-divider {
       max-width: 960px;
-      margin: 48px auto 0;
-      padding: 0 16px;
+      margin: 44px auto 0;
+      padding: 0 14px;
       border-top: 1px solid var(--border);
     }
 
     .section-block {
       max-width: 960px;
       margin: 0 auto;
-      padding: 32px 16px 0;
+      padding: 28px 14px 0;
     }
 
     /* ── VIDEO SECTION ── */
     .video-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-
-    @media (min-width: 600px) {
-      .video-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
     @media (min-width: 900px) {
@@ -490,12 +537,14 @@
       text-decoration: none;
       display: flex;
       flex-direction: column;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .video-card:hover {
+    .video-card:hover,
+    .video-card:active {
       border-color: #c00;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     }
 
     .video-thumb {
@@ -533,13 +582,13 @@
     }
 
     .play-btn i {
-      font-size: 42px;
+      font-size: 38px;
       color: #fff;
       filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
     }
 
     .video-info {
-      padding: 10px 12px 12px;
+      padding: 9px 10px 10px;
       display: flex;
       flex-direction: column;
       gap: 4px;
@@ -547,10 +596,16 @@
     }
 
     .video-title {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       color: var(--text);
       line-height: 1.4;
+    }
+
+    @media (min-width: 400px) {
+      .video-title {
+        font-size: 13px;
+      }
     }
 
     .video-meta {
@@ -561,7 +616,7 @@
       gap: 5px;
     }
 
-    /* Full playlist card — spans full width */
+    /* Playlist card */
     .playlist-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -571,29 +626,30 @@
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .playlist-card:hover {
+    .playlist-card:hover,
+    .playlist-card:active {
       border-color: #c00;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.5);
       transform: translateY(-2px);
     }
 
     .playlist-thumb {
       position: relative;
-      width: 160px;
-      min-width: 160px;
+      width: 140px;
+      min-width: 140px;
       aspect-ratio: 16/9;
       background: #111;
       overflow: hidden;
       flex-shrink: 0;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 400px) {
       .playlist-thumb {
-        width: 110px;
-        min-width: 110px;
+        width: 100px;
+        min-width: 100px;
       }
     }
 
@@ -614,12 +670,12 @@
     }
 
     .playlist-thumb .play-btn i {
-      font-size: 28px;
+      font-size: 26px;
       color: #fff;
     }
 
     .playlist-info {
-      padding: 14px 16px;
+      padding: 12px 14px;
       display: flex;
       flex-direction: column;
       gap: 5px;
@@ -631,21 +687,21 @@
       letter-spacing: 1px;
       background: #c00;
       color: #fff;
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 4px;
       display: inline-block;
       width: fit-content;
     }
 
     .playlist-title {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       color: var(--text);
       line-height: 1.4;
     }
 
     .playlist-meta {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--text-muted);
     }
 
@@ -653,16 +709,16 @@
     .donate-section {
       max-width: 960px;
       margin: 0 auto;
-      padding: 32px 16px 0;
+      padding: 28px 14px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       text-align: center;
     }
 
     .donate-title {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
       display: flex;
       align-items: center;
@@ -676,12 +732,13 @@
     .donate-subtitle {
       color: var(--text-muted);
       font-size: 13px;
-      max-width: 420px;
+      max-width: 380px;
+      line-height: 1.5;
     }
 
     .donate-qr {
-      width: 200px;
-      height: 200px;
+      width: 190px;
+      height: 190px;
       object-fit: contain;
       border-radius: 12px;
       border: 2px solid var(--border);
@@ -693,7 +750,7 @@
     /* ── CONTACT BUTTON ── */
     .contact-section {
       text-align: center;
-      padding: 32px 16px 20px;
+      padding: 28px 14px 16px;
     }
 
     .contact-btn {
@@ -709,9 +766,12 @@
       font-weight: 700;
       transition: var(--transition);
       box-shadow: 0 4px 16px rgba(24, 119, 242, 0.3);
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
-    .contact-btn:hover {
+    .contact-btn:hover,
+    .contact-btn:active {
       background: #1565d8;
       transform: translateY(-2px);
       box-shadow: 0 6px 22px rgba(24, 119, 242, 0.45);
@@ -724,11 +784,11 @@
     /* ── FOOTER ── */
     .footer {
       text-align: center;
-      padding: 20px 16px 32px;
+      padding: 18px 14px 28px;
       border-top: 1px solid var(--border);
       color: var(--text-muted);
       font-size: 12px;
-      margin-top: 20px;
+      margin-top: 16px;
     }
 
     .footer a {
@@ -738,13 +798,13 @@
 
     /* View transitions */
     .view {
-      animation: fadeIn 0.18s ease;
+      animation: fadeIn 0.15s ease;
     }
 
     @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: translateY(6px);
+        transform: translateY(5px);
       }
 
       to {
@@ -760,7 +820,7 @@
   <header class="header">
     <div class="header-brand">
       <span class="dot"></span>
-      VU Admissions HelpLine
+      <span class="name">VU Admissions HelpLine</span>
       <span class="header-badge">Unofficial</span>
     </div>
     <div class="header-social">
@@ -773,13 +833,13 @@
     </div>
   </header>
 
-  <!-- ── DEPARTMENTS ─────────────────────────────────── -->
+  <!-- ── DEPARTMENTS ── -->
   <div class="wrapper">
     <nav class="breadcrumb" id="breadcrumb"></nav>
     <div id="app"></div>
   </div>
 
-  <!-- ── GUIDELINE VIDEOS ────────────────────────────── -->
+  <!-- ── GUIDELINE VIDEOS ── -->
   <div class="section-divider"></div>
   <div class="section-block">
     <div class="section-header">
@@ -788,20 +848,17 @@
       </div>
       <a class="section-link" href="https://www.youtube.com/playlist?list=PLRPJSxLU9wkWYL1DXalGar65JxruxbkEh"
         target="_blank">
-        View full playlist <i class="fas fa-arrow-right" style="font-size:11px"></i>
+        Full playlist <i class="fas fa-arrow-right" style="font-size:10px"></i>
       </a>
     </div>
     <p class="section-subtitle">Step-by-step admission guides — watch before you apply</p>
 
-    <!-- Top 3 individual video cards -->
-    <!-- Replace VIDEO_ID_1/2/3 and titles with your actual video IDs from the playlist -->
     <div class="video-grid">
-
       <a class="video-card" href="https://www.youtube.com/watch?v=QPLVKlZ7miI&list=PLRPJSxLU9wkWYL1DXalGar65JxruxbkEh"
         target="_blank">
         <div class="video-thumb">
           <img src="https://i.ytimg.com/vi/QPLVKlZ7miI/mqdefault.jpg"
-            onerror="this.src='https://i.ytimg.com/vi/default/mqdefault.jpg'" alt="Video 1">
+            onerror="this.src='https://i.ytimg.com/vi/default/mqdefault.jpg'" alt="Video 1" loading="lazy">
           <div class="play-btn"><i class="fas fa-play-circle"></i></div>
         </div>
         <div class="video-info">
@@ -814,7 +871,7 @@
         target="_blank">
         <div class="video-thumb">
           <img src="https://i.ytimg.com/vi/ZCft6elWUew/mqdefault.jpg"
-            onerror="this.src='https://i.ytimg.com/vi/default/mqdefault.jpg'" alt="Video 2">
+            onerror="this.src='https://i.ytimg.com/vi/default/mqdefault.jpg'" alt="Video 2" loading="lazy">
           <div class="play-btn"><i class="fas fa-play-circle"></i></div>
         </div>
         <div class="video-info">
@@ -827,23 +884,21 @@
         target="_blank">
         <div class="video-thumb">
           <img src="https://i.ytimg.com/vi/tgN2Xg3A73M/mqdefault.jpg"
-            onerror="this.src='https://i.ytimg.com/vi/default/mqdefault.jpg'" alt="Video 3">
+            onerror="this.src='https://i.ytimg.com/vi/default/mqdefault.jpg'" alt="Video 3" loading="lazy">
           <div class="play-btn"><i class="fas fa-play-circle"></i></div>
         </div>
         <div class="video-info">
-          <div class="video-title">ভর্তি পরীক্ষা কেমন হয় ?</div>
+          <div class="video-title">ভর্তি পরীক্ষা কেমন হয় ?</div>
           <div class="video-meta"><i class="fab fa-youtube" style="color:#ff0000"></i> Watch on YouTube</div>
         </div>
       </a>
-
     </div>
 
-    <!-- Full playlist card -->
     <a class="playlist-card" href="https://www.youtube.com/playlist?list=PLRPJSxLU9wkWYL1DXalGar65JxruxbkEh"
       target="_blank">
       <div class="playlist-thumb">
         <img src="https://i.ytimg.com/vi/QPLVKlZ7miI/mqdefault.jpg"
-          onerror="this.src='https://i.ytimg.com/vi/default/mqdefault.jpg'" alt="Full Playlist">
+          onerror="this.src='https://i.ytimg.com/vi/default/mqdefault.jpg'" alt="Full Playlist" loading="lazy">
         <div class="play-btn"><i class="fas fa-list"></i></div>
       </div>
       <div class="playlist-info">
@@ -855,7 +910,7 @@
     </a>
   </div>
 
-  <!-- ── DONATION QR ─────────────────────────────────── -->
+  <!-- ── DONATION QR ── -->
   <div class="section-divider"></div>
   <div class="donate-section">
     <div class="donate-title"><i class="fas fa-heart"></i> Support This Project</div>
@@ -864,7 +919,7 @@
     <p style="color:var(--text-muted); font-size:12px;">স্ক্যান করে ডোনেট করুন</p>
   </div>
 
-  <!-- ── CONTACT ─────────────────────────────────────── -->
+  <!-- ── CONTACT ── -->
   <div class="contact-section">
     <a href="https://facebook.com/RajshahirNahid" target="_blank" class="contact-btn">
       <i class="fab fa-facebook"></i> Contact Me on Facebook
@@ -878,18 +933,9 @@
 
   <script>
     const DEPARTMENTS = [
+      { id: 'tuition', label: 'TUITION FEE', icon: 'fa-money-bill-wave', style: 'tuition', externalUrl: 'https://vu.edu.bd/international/tuition-fees' },
       {
-        id: 'tuition',
-        label: 'TUITION FEE',
-        icon: 'fa-money-bill-wave',
-        style: 'tuition',
-        externalUrl: 'https://vu.edu.bd/international/tuition-fees'
-      },
-      {
-        id: 'bba',
-        label: 'BBA',
-        icon: 'fa-briefcase',
-        items: [
+        id: 'bba', label: 'BBA', icon: 'fa-briefcase', items: [
           { name: 'BBA Fall 16&18.pdf', type: 'pdf', url: 'questions/BBA/BBA Fall 16&18.pdf' },
           { name: 'BBA Summer 22 (1).jpg', type: 'image', url: 'questions/BBA/BBA summer 22(1).jpg' },
           { name: 'BBA Summer 22.jpg', type: 'image', url: 'questions/BBA/BBA summer 22.jpg' },
@@ -899,10 +945,7 @@
         ]
       },
       {
-        id: 'cse',
-        label: 'CSE',
-        icon: 'fa-code',
-        items: [
+        id: 'cse', label: 'CSE', icon: 'fa-code', items: [
           { name: 'CSE Fall 23.pdf', type: 'pdf', url: 'questions/CSE/CSE-Fall-23.pdf' },
           { name: 'CSE.pdf', type: 'pdf', url: 'questions/CSE/CSE.pdf' },
           { name: 'Fall 23 (1).jpg', type: 'image', url: 'questions/CSE/Fall -23 (1).jpg' },
@@ -911,38 +954,26 @@
         ]
       },
       {
-        id: 'economics',
-        label: 'ECONOMICS',
-        icon: 'fa-chart-line',
-        items: [
+        id: 'economics', label: 'ECONOMICS', icon: 'fa-chart-line', items: [
           { name: 'Economic Summer 23.pdf', type: 'pdf', url: 'questions/Economics/Economic summer 23.pdf' },
           { name: 'Economics Spring 16.pdf', type: 'pdf', url: 'questions/Economics/Economics spring 16.pdf' },
           { name: 'Economics.pdf', type: 'pdf', url: 'questions/Economics/Economics.pdf' },
         ]
       },
       {
-        id: 'eee',
-        label: 'EEE',
-        icon: 'fa-bolt',
-        items: [
+        id: 'eee', label: 'EEE', icon: 'fa-bolt', items: [
           { name: 'EEE 2.pdf', type: 'pdf', url: 'questions/EEE/EEE 2.pdf' },
           { name: 'EEE.pdf', type: 'pdf', url: 'questions/EEE/EEE.pdf' },
         ]
       },
       {
-        id: 'english',
-        label: 'ENGLISH',
-        icon: 'fa-book-open',
-        items: [
+        id: 'english', label: 'ENGLISH', icon: 'fa-book-open', items: [
           { name: 'English Summer 19 Spring 20.pdf', type: 'pdf', url: 'questions/English/English summer 19 spring 20.pdf' },
           { name: 'English Question.jpg', type: 'image', url: 'questions/English/FB_IMG_1714929009571.jpg' },
         ]
       },
       {
-        id: 'journalism',
-        label: 'JOURNALISM',
-        icon: 'fa-newspaper',
-        items: [
+        id: 'journalism', label: 'JOURNALISM', icon: 'fa-newspaper', items: [
           { name: 'Journalism Fall 22.pdf', type: 'pdf', url: 'questions/Journalism/Journalism fall 22.pdf' },
           { name: 'Journalism Spring 25.pdf', type: 'pdf', url: 'questions/Journalism/Journalism spring 25 .pdf' },
           { name: 'Journalism Summer 23.pdf', type: 'pdf', url: 'questions/Journalism/Journalism summer 23.pdf' },
@@ -951,10 +982,7 @@
         ]
       },
       {
-        id: 'law',
-        label: 'LAW',
-        icon: 'fa-scale-balanced',
-        items: [
+        id: 'law', label: 'LAW', icon: 'fa-scale-balanced', items: [
           { name: 'Law and Human Rights.pdf', type: 'pdf', url: 'questions/LAW/Law and Human Rights.pdf' },
           { name: 'Question Page 1.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1714928967948.jpg' },
           { name: 'Question Page 2.jpg', type: 'image', url: 'questions/LAW/FB_IMG_1714928969763.jpg' },
@@ -974,39 +1002,27 @@
         ]
       },
       {
-        id: 'nfe',
-        label: 'NFE',
-        icon: 'fa-graduation-cap',
-        items: [
+        id: 'nfe', label: 'NFE', icon: 'fa-graduation-cap', items: [
           { name: 'NFE (1).pdf', type: 'pdf', url: 'questions/NFE/NFE(1).pdf' },
           { name: 'NFE.pdf', type: 'pdf', url: 'questions/NFE/NFE.pdf' },
         ]
       },
       {
-        id: 'pharmacy',
-        label: 'PHARMACY',
-        icon: 'fa-pills',
-        items: [
+        id: 'pharmacy', label: 'PHARMACY', icon: 'fa-pills', items: [
           { name: 'Pharmacy 18.pdf', type: 'pdf', url: 'questions/Pharmacy/Pharmacy 18.pdf' },
           { name: 'Pharmacy Spr 24.pdf', type: 'pdf', url: 'questions/Pharmacy/Pharmacy-Spr-24.pdf' },
           { name: 'Pharmacy.pdf', type: 'pdf', url: 'questions/Pharmacy/Pharmacy.pdf' },
         ]
       },
       {
-        id: 'polsci',
-        label: 'POLITICAL SCIENCE',
-        icon: 'fa-landmark',
-        items: [
+        id: 'polsci', label: 'POLITICAL SCIENCE', icon: 'fa-landmark', items: [
           { name: 'Political Science Spring 20.pdf', type: 'pdf', url: 'questions/Political Science/Political Science spring 20.pdf' },
           { name: 'Political Science Summer 24.pdf', type: 'pdf', url: 'questions/Political Science/political science summer 24.pdf' },
           { name: 'Political Sciences Fall 22.pdf', type: 'pdf', url: 'questions/Political Science/political sciences fall 22.pdf' },
         ]
       },
       {
-        id: 'sociology',
-        label: 'SOCIOLOGY',
-        icon: 'fa-people-group',
-        items: [
+        id: 'sociology', label: 'SOCIOLOGY', icon: 'fa-people-group', items: [
           { name: 'Sociology 2019.pdf', type: 'pdf', url: 'questions/Sociology/Sociology 2019.pdf' },
           { name: 'Sociology Fall 2022.pdf', type: 'pdf', url: 'questions/Sociology/Sociology Admission Test Question Fall 2022_final (1).pdf' },
           { name: 'Sociology Spring 2025.pdf', type: 'pdf', url: 'questions/Sociology/Sociology Admission Test Question Spring 2025.pdf' },
@@ -1014,10 +1030,17 @@
           { name: 'Sociology Summer 2023.pdf', type: 'pdf', url: 'questions/Sociology/Sociology admission test summer 2023.pdf' },
           { name: 'Sociology Spring 2022.pdf', type: 'pdf', url: 'questions/Sociology/Sociology_Admission_Test_Question_Spring-  2022.pdf' },
         ]
-      }
+      },
     ];
 
     let state = { view: 'home', dept: null, folderStack: [] };
+
+    // Scroll to very top of page — works on iOS Safari & Android Chrome
+    function scrollTop() {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
 
     function render() {
       renderBreadcrumb();
@@ -1053,31 +1076,27 @@
       DEPARTMENTS.forEach(dept => {
         const count = dept.externalUrl ? null : (dept.items ? dept.items.length : 0);
         const countBadge = count !== null
-          ? `<span class="card-count">${count} file${count !== 1 ? 's' : ''}</span>`
-          : '';
+          ? `<span class="card-count">${count} file${count !== 1 ? 's' : ''}</span>` : '';
         if (dept.externalUrl) {
-          cards += `
-        <a class="dept-card ${dept.style || ''}" href="${dept.externalUrl}" target="_blank" title="${dept.label}">
-          <span class="card-icon"><i class="fas ${dept.icon}"></i></span>
-          <span class="card-label">${dept.label}</span>
-        </a>`;
+          cards += `<a class="dept-card ${dept.style || ''}" href="${dept.externalUrl}" target="_blank" title="${dept.label}">
+            <span class="card-icon"><i class="fas ${dept.icon}"></i></span>
+            <span class="card-label">${dept.label}</span>
+          </a>`;
         } else {
-          cards += `
-        <div class="dept-card ${dept.style || ''}" onclick="openDept('${dept.id}')" title="Open ${dept.label}">
-          <span class="card-icon"><i class="fas ${dept.icon}"></i></span>
-          <span class="card-label">${dept.label}</span>
-          ${countBadge}
-        </div>`;
+          cards += `<div class="dept-card ${dept.style || ''}" onclick="openDept('${dept.id}')" title="Open ${dept.label}">
+            <span class="card-icon"><i class="fas ${dept.icon}"></i></span>
+            <span class="card-label">${dept.label}</span>
+            ${countBadge}
+          </div>`;
         }
       });
-      app.innerHTML = `
-    <div class="view">
-      <div class="section-header">
-        <div class="section-title"><i class="fas fa-folder-open"></i> Departments</div>
-      </div>
-      <p class="section-subtitle">Select a department to browse past question papers</p>
-      <div class="home-grid">${cards}</div>
-    </div>`;
+      app.innerHTML = `<div class="view">
+        <div class="section-header">
+          <div class="section-title"><i class="fas fa-folder-open"></i> Departments</div>
+        </div>
+        <p class="section-subtitle">Select a department to browse past question papers</p>
+        <div class="home-grid">${cards}</div>
+      </div>`;
     }
 
     function renderExplorer() {
@@ -1094,34 +1113,31 @@
         items.forEach((item, idx) => {
           const { iconClass, iconColor } = getFileIcon(item.type);
           if (item.type === 'folder') {
-            filesHtml += `
-          <div class="file-item" onclick="openFolder(${idx})" title="${item.name}">
-            <span class="file-icon ${iconColor}"><i class="fas ${iconClass}"></i></span>
-            <span class="file-name">${item.name}</span>
-            <span class="file-meta">${item.children ? item.children.length + ' items' : 'Folder'}</span>
-          </div>`;
+            filesHtml += `<div class="file-item" onclick="openFolder(${idx})" title="${item.name}">
+              <span class="file-icon ${iconColor}"><i class="fas ${iconClass}"></i></span>
+              <span class="file-name">${item.name}</span>
+              <span class="file-meta">${item.children ? item.children.length + ' items' : 'Folder'}</span>
+            </div>`;
           } else {
-            filesHtml += `
-          <a class="file-item" href="${item.url}" target="_blank" title="${item.name}">
-            <span class="file-icon ${iconColor}"><i class="fas ${iconClass}"></i></span>
-            <span class="file-name">${item.name}</span>
-            <span class="file-meta">${item.type.toUpperCase()}</span>
-          </a>`;
+            filesHtml += `<a class="file-item" href="${item.url}" target="_blank" title="${item.name}">
+              <span class="file-icon ${iconColor}"><i class="fas ${iconClass}"></i></span>
+              <span class="file-name">${item.name}</span>
+              <span class="file-meta">${item.type.toUpperCase()}</span>
+            </a>`;
           }
         });
       }
-      app.innerHTML = `
-    <div class="view">
-      <div class="explorer-toolbar">
-        <button class="toolbar-back" onclick="${state.folderStack.length > 0 ? 'goUp()' : 'goHome()'}">
-          <i class="fas fa-arrow-left"></i>
-          ${state.folderStack.length > 0 ? 'Back' : 'All Departments'}
-        </button>
-      </div>
-      <div class="view-title"><i class="fas ${dept.icon}"></i> ${title}</div>
-      <div class="view-subtitle">${items.length} file${items.length !== 1 ? 's' : ''} in this folder</div>
-      <div class="file-grid">${filesHtml}</div>
-    </div>`;
+      app.innerHTML = `<div class="view">
+        <div class="explorer-toolbar">
+          <button class="toolbar-back" onclick="${state.folderStack.length > 0 ? 'goUp()' : 'goHome()'}">
+            <i class="fas fa-arrow-left"></i>
+            ${state.folderStack.length > 0 ? 'Back' : 'All Departments'}
+          </button>
+        </div>
+        <div class="view-title"><i class="fas ${dept.icon}"></i> ${title}</div>
+        <div class="view-subtitle">${items.length} file${items.length !== 1 ? 's' : ''} in this folder</div>
+        <div class="file-grid">${filesHtml}</div>
+      </div>`;
     }
 
     function getFileIcon(type) {
@@ -1134,13 +1150,13 @@
       }
     }
 
-    function goHome() { state = { view: 'home', dept: null, folderStack: [] }; render(); }
-    function openDept(id) { state.dept = DEPARTMENTS.find(d => d.id === id); state.view = 'explorer'; state.folderStack = []; render(); }
-    function goDept() { state.folderStack = []; render(); }
-    function openFolder(idx) { const items = getCurrentItems(); const folder = items[idx]; if (folder && folder.type === 'folder') { state.folderStack.push(folder); render(); } }
-    function goUp() { state.folderStack.pop(); render(); }
-    function goFolderLevel(i) { state.folderStack = state.folderStack.slice(0, i + 1); render(); }
-    function getCurrentItems() { let items = state.dept.items || []; for (const folder of state.folderStack) items = folder.children || []; return items; }
+    function goHome() { state = { view: 'home', dept: null, folderStack: [] }; render(); scrollTop(); }
+    function openDept(id) { state.dept = DEPARTMENTS.find(d => d.id === id); state.view = 'explorer'; state.folderStack = []; render(); scrollTop(); }
+    function goDept() { state.folderStack = []; render(); scrollTop(); }
+    function openFolder(idx) { const items = getCurrentItems(); const f = items[idx]; if (f && f.type === 'folder') { state.folderStack.push(f); render(); scrollTop(); } }
+    function goUp() { state.folderStack.pop(); render(); scrollTop(); }
+    function goFolderLevel(i) { state.folderStack = state.folderStack.slice(0, i + 1); render(); scrollTop(); }
+    function getCurrentItems() { let items = state.dept.items || []; for (const f of state.folderStack) items = f.children || []; return items; }
 
     render();
   </script>
